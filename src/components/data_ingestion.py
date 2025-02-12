@@ -4,6 +4,9 @@ import pandas as pd
 from dataclasses import dataclass
 import logging
 
+from src.components.data_transformation import DataTransformation
+from src.components.data_transformation import DataTransformationConifg
+
 # Custom Exception
 class CustomException(Exception):
     def __init__(self, error_message: str):
@@ -62,6 +65,9 @@ if __name__ == "__main__":
     try:
         data_ingestion_obj = DataIngestion()
         credits_data, movies_data = data_ingestion_obj.initiate_data_ingestion()
+
+        data_transformation = DataTransformation()
+        tfidf_matrix = data_transformation.initiate_data_transformation(credits_data, movies_data)
 
         # Print the paths of ingested data
         print(f"Data Ingested Successfully: \nCredits Data Path: {credits_data}\nMovies Data Path: {movies_data}")
