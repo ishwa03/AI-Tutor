@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation System</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Movie Recommendation System</h1>
+
+        <!-- Movie Title Input Form -->
+        <form action="{{ url_for('recommend_movies') }}" method="POST">
+            <h3 class="text-center">Get Movie Recommendations</h3>
+            <div class="form-group">
+                <label for="movie_title">Enter Movie Title</label>
+                <input type="text" class="form-control" id="movie_title" name="movie_title" placeholder="Enter Movie Title" required>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary">Get Recommendations</button>
+            </div>
+        </form>
+
+        <!-- Displaying Recommended Movies -->
+        {% if results %}
+        <div class="mt-4">
+            <h4 class="text-center">Recommended Movies</h4>
+            <ul class="list-group">
+                {% for movie in results %}
+                    <li class="list-group-item">{{ movie }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
