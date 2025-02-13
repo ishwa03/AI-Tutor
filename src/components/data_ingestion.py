@@ -7,6 +7,9 @@ import logging
 from src.components.data_transformation import DataTransformation
 from src.components.data_transformation import DataTransformationConifg
 
+from src.components.model_trainer import ModelTrainerConfig
+from src.components.model_trainer import Modeltrainer
+
 # Custom Exception
 class CustomException(Exception):
     def __init__(self, error_message: str):
@@ -67,7 +70,10 @@ if __name__ == "__main__":
         credits_data, movies_data = data_ingestion_obj.initiate_data_ingestion()
 
         data_transformation = DataTransformation()
-        tfidf_matrix = data_transformation.initiate_data_transformation(credits_data, movies_data)
+        movie_tags, tfidf_matrix = data_transformation.initiate_data_transformation(credits_data, movies_data)
+
+        model_trainer = Modeltrainer()
+        model = model_trainer.initiate_model_trainer(tfidf_matrix)
 
         # Print the paths of ingested data
         print(f"Data Ingested Successfully: \nCredits Data Path: {credits_data}\nMovies Data Path: {movies_data}")

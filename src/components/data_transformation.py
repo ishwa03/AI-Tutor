@@ -117,7 +117,7 @@ class DataTransformation:
             # Save the preprocessed vectorizer object
             save_object(file_path=self.data_transformation_config.preprocessor_obj_file_path, obj=vectorizer)
 
-            return tfidf_matrix
+            return transformed_movies, tfidf_matrix
 
         except Exception as e:
             raise CustomException(f"Error during data transformation: {e}", sys)
